@@ -76,7 +76,6 @@
         /* Sello Limpio de Herradura */
         .wax-seal { position: absolute; top: 135px; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; z-index: 20; transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.2s, opacity 0.4s ease 0.15s; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.8)); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .envelope-wrapper.open .wax-seal { transform: translateX(-50%) scale(0); opacity: 0; }
-        /* El icono se mantiene completamente limpio y libre de filtros que lo distorsionen */
         .wax-seal img { width: 100%; height: 100%; object-fit: contain; }
 
         .hint-text { margin-top: 50px; text-align: center; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 6px; color: var(--text-gold); animation: pulse 2.5s infinite; text-transform: uppercase; z-index: 10; font-weight: 700; opacity: 0.8;}
@@ -109,12 +108,12 @@
         /* HEADER HERO */
         .hero-band {
             background: linear-gradient(180deg, #3d2210 0%, #1c0e07 100%);
-            padding: 80px 20px 60px 20px;
+            padding: 80px 20px 40px 20px;
             position: relative;
             overflow: hidden;
         }
 
-        /* Silueta de Caballo (Fondo) - Transparencia 50% solicitada */
+        /* Silueta de Caballo (Fondo) - Transparencia 50% */
         .bg-horse-image {
             position: absolute;
             top: 0;
@@ -122,7 +121,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.5; /* Transparencia exacta al 50% */
+            opacity: 0.5;
             pointer-events: none;
             z-index: 0;
         }
@@ -148,18 +147,37 @@
         .family-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 6vw, 24px); font-weight: 600; font-style: italic; color: var(--text-white); line-height: 1.6; margin-top: 10px; }
         .info-block { margin-bottom: 35px; }
 
-        /* ====== ÍCONO HERRADURA LIMPIO ====== */
-        .icono-herradura {
-            width: 45px; height: auto;
-            object-fit: contain;
-            /* Filtros eliminados completamente para mantener el diseño original limpio */
-        }
+        /* ====== ÍCONO HERRADURA ====== */
+        .icono-herradura { width: 45px; height: auto; object-fit: contain; }
         .icono-herradura-sm { width: 35px; }
 
         /* ====== DIVISORES ====== */
         .divider-ornate { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 0 auto; width: 85%; }
         .divider-ornate::before, .divider-ornate::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(220,191,162,0.5)); }
         .divider-ornate::after { background: linear-gradient(to left, transparent, rgba(220,191,162,0.5)); }
+
+        /* ====== GALERÍAS DE FOTOS (PREMIUM) ====== */
+        .premium-frame {
+            width: 85%; max-width: 320px; margin: 30px auto; padding: 6px;
+            background: var(--bg-bronze); border: 1px solid var(--text-gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8); position: relative;
+        }
+        .premium-frame::before {
+            content: ''; position: absolute; top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 1px dashed rgba(220,191,162,0.4); pointer-events: none; z-index: 2;
+        }
+        .premium-frame img {
+            width: 100%; display: block; aspect-ratio: 4/5; object-fit: cover;
+        }
+
+        .photo-grid { display: grid; gap: 12px; margin: 35px auto 10px auto; width: 95%; }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .photo-item {
+            width: 100%; aspect-ratio: 3/4; object-fit: cover;
+            border: 1px solid var(--text-gold); border-radius: 2px; padding: 3px;
+            background: var(--bg-bronze); box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+        }
 
         /* ====== ITINERARIO ====== */
         .timeline-container { position: relative; margin: 40px auto 10px auto; padding-left: 25px; text-align: left; max-width: 90%; }
@@ -168,7 +186,7 @@
         .timeline-item:last-child { margin-bottom: 0; }
         
         .timeline-dot { position: absolute; left: -25px; top: 0px; width: 30px; height: 30px; background: var(--bg-base); border: 2px solid var(--text-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-        .timeline-dot svg { width: 14px; height: 14px; fill: var(--text-gold); } /* Íconos representativos en dorado */
+        .timeline-dot svg { width: 14px; height: 14px; fill: var(--text-gold); } 
         
         .timeline-time { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700; color: var(--text-gold); letter-spacing: 2px; margin-bottom: 6px; }
         .timeline-title { font-family: 'Bodoni Moda', serif; font-size: 26px; color: var(--text-white); line-height: 1.2; margin-bottom: 6px; font-weight: 500; }
@@ -363,6 +381,11 @@
                             <div class="info-label">Mis Padrinos</div>
                             <div class="family-names">Eduardo Adrian Valdez Rivera<br>Nancy Cristina Márquez Landín</div>
                         </div>
+
+                        <!-- FOTO 1: PRINCIPAL (PORTARRETRATO) -->
+                        <div class="premium-frame reveal-scale delay-4">
+                            <img src="assets/foto1.jpg" alt="Mia XV Años">
+                        </div>
                     </div>
                 </div>
 
@@ -459,6 +482,13 @@
                             Agendar Evento
                         </button>
                     </div>
+
+                    <!-- FOTOS 2, 3, 4: GALERÍA GRID -->
+                    <div class="photo-grid grid-3">
+                        <img src="assets/foto2.jpg" class="photo-item reveal-left delay-1" alt="Galeria">
+                        <img src="assets/foto3.jpg" class="photo-item reveal-scale delay-2" alt="Galeria">
+                        <img src="assets/foto4.jpg" class="photo-item reveal-right delay-3" alt="Galeria">
+                    </div>
                 </div>
 
                 <!-- SECCIÓN 3: UBICACIONES -->
@@ -492,7 +522,7 @@
                     </div>
                 </div>
 
-                <!-- SECCIÓN 4: ITINERARIO CON ICONOS REPRESENTATIVOS -->
+                <!-- SECCIÓN 4: ITINERARIO -->
                 <div class="section-band">
                     <div class="section-heading gold-text reveal">Itinerario</div>
                     <p class="rsvp-intro reveal-fade delay-1">Acompáñame a disfrutar cada momento de esta noche mágica.</p>
@@ -565,15 +595,23 @@
                         </div>
                         
                     </div>
+
+                    <!-- FOTOS 5, 6, 7, 8: GALERÍA GRID -->
+                    <div class="photo-grid grid-2">
+                        <img src="assets/foto5.jpg" class="photo-item reveal-left delay-1" alt="Galeria">
+                        <img src="assets/foto6.jpg" class="photo-item reveal-right delay-2" alt="Galeria">
+                        <img src="assets/foto7.jpg" class="photo-item reveal-left delay-3" alt="Galeria">
+                        <img src="assets/foto8.jpg" class="photo-item reveal-right delay-4" alt="Galeria">
+                    </div>
                 </div>
 
-                <!-- SECCIÓN 5: DRESS CODE & REGALOS CON ICONOS ESPECÍFICOS -->
+                <!-- SECCIÓN 5: DRESS CODE & REGALOS -->
                 <div class="section-band" style="background: rgba(0,0,0,0.2);">
                     <div class="section-heading gold-text reveal-left">Dress Code</div>
                     
                     <div class="dress-code-alert reveal-right delay-1">
                         <p>
-                            <!-- Ícono de Sombrero Vaquero -->
+                            <!-- Ícono Sombrero Vaquero -->
                             <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--text-gold);"><path d="M21 15c-1.2 0-2.3-.3-3.2-.8-.7-1.4-1.7-2.6-3.2-3.1-.3-.1-.5-.4-.5-.7V7c0-1.7-1.3-3-3-3S8 5.3 8 7v3.3c0 .3-.2.6-.5.7-1.5.5-2.5 1.7-3.2 3.1C3.4 14.7 2.3 15 1 15v2c2.1 0 3.8-1.2 4.7-2.9.4-.9 1.1-1.6 2-2V7c0-.6.4-1 1-1s1 .4 1 1v5.1c.9.4 1.6 1.1 2 2C12.6 15.8 14.3 17 16.4 17c2.1 0 3.8-1.2 4.7-2.9.4-.9 1.1-1.6 2-2V7c0-.6.4-1 1-1s1 .4 1 1v5.1c.9.4 1.6 1.1 2 2C20.6 15.8 22.3 17 24.4 17V15c-1.1 0-2.2-.3-3.4-1z"/></svg>
                             Formal y Vaquera
                         </p>
@@ -587,7 +625,7 @@
                     <p class="rsvp-intro reveal-left delay-1">Tu presencia es nuestro mayor regalo y lo más importante para mí, pero si deseas tener un detalle, cualquier obsequio será bien recibido.</p>
                     
                     <div class="reveal delay-2" style="margin-bottom:35px;">
-                        <!-- Ícono de Sobre (Lluvia de Sobres) -->
+                        <!-- Ícono Lluvia de Sobres -->
                         <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--text-gold); margin-bottom: 15px;">
                             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
@@ -595,7 +633,7 @@
                     </div>
 
                     <div class="reveal delay-3">
-                        <!-- Ícono de Regalo (Regalo al Gusto) -->
+                        <!-- Ícono Regalo al Gusto -->
                         <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--text-gold); margin-bottom: 15px;">
                             <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
                         </svg>
@@ -635,6 +673,13 @@
                     <p class="reveal-fade delay-3" style="font-family:'Montserrat',sans-serif; font-size:10px; color:#a89a8c; margin-top:15px; text-transform:uppercase; letter-spacing:1.5px; font-weight:500;">
                         *Requiere la app de Google Drive
                     </p>
+
+                    <!-- FOTOS 9, 10, 11: GALERÍA GRID -->
+                    <div class="photo-grid grid-3" style="margin-top: 45px;">
+                        <img src="assets/foto9.jpg" class="photo-item reveal-left delay-1" alt="Galeria">
+                        <img src="assets/foto10.jpg" class="photo-item reveal-scale delay-2" alt="Galeria">
+                        <img src="assets/foto11.jpg" class="photo-item reveal-right delay-3" alt="Galeria">
+                    </div>
                 </div>
 
                 <!-- SECCIÓN 7: RSVP & MURO DE DESEOS -->
