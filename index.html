@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mis XV Años - Mia Márquez | Invytia Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@300;400;600;700&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600;1,700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Premium Vaquera: Beige, Rojo Profundo, Dorado */
+            --bg-beige: rgba(245, 245, 220, 0.8);
+            --bg-rojo-oscuro: rgba(92, 16, 16, 0.9);
+            --bg-dorado-suave: rgba(212, 175, 55, 0.25);
+            
+            --text-deep: #1a0b0b; 
+            --text-rose: #8a1c1c; /* Rojo elegante */
+            --text-gold: #d4af37;
+            --text-muted: #5a4634;
+            --text-light: #fef1c8;
+            
+            --gold-gradient: linear-gradient(135deg, #c5a059 0%, #fef1c8 40%, #d4af37 60%, #9e7f1e 100%);
+            --red-gradient: linear-gradient(135deg, #8a1c1c 0%, #5c1010 100%);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            width: 100%; 
+            height: 100%;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: #0f0808; 
+            color: var(--text-deep);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ====== ANIMACIONES DE ENTRADA DINÁMICAS ====== */
+        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-scale { opacity: 0; transform: scale(0.85); transition: opacity 1.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-blur { opacity: 0; filter: blur(15px); transform: translateY(30px); transition: all 1.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal-fade { opacity: 0; transition: opacity 2s ease; }
+
+        .active { opacity: 1 !important; transform: translate(0) scale(1) !important; filter: blur(0) !important; }
+
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+        .delay-4 { transition-delay: 0.6s; }
+
+        /* ====== FONDOS ANIMADOS ====== */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .ambient-glow {
+            position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.4;
+            animation: floatGlow 20s infinite alternate ease-in-out; pointer-events: none;
+        }
+        .glow-1 { top: -10%; left: -20%; width: 50vw; height: 50vw; background: rgba(138, 28, 28, 0.4); } /* Brillo rojo */
+        .glow-2 { bottom: -10%; right: -20%; width: 60vw; height: 60vw; background: rgba(212, 175, 55, 0.25); animation-delay: -5s; }
+        
+        @keyframes floatGlow { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(60px, -80px) scale(1.2); } }
+
+        /* ====== SOBRE ====== */
+        #envelope-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f0808;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; transition: opacity 1.2s ease-in-out, visibility 1.2s; overflow: hidden;
+        }
+        #envelope-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .env-star { position: absolute; border-radius: 50%; background: #fef1c8; z-index: 2; animation: envTwinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s); }
+        @keyframes envTwinkle { 0%, 100% { opacity: 0.1; transform: scale(1); box-shadow: 0 0 0 transparent; } 50% { opacity: 0.9; transform: scale(1.6); box-shadow: 0 0 15px rgba(254,241,200,0.8); } }
+
+        .env-corner-svg { position: absolute; opacity: 0.8; pointer-events: none; z-index: 3; width: clamp(80px, 25vw, 130px); height: clamp(80px, 25vw, 130px); }
+        .env-corner-svg.tl { top: -10px; left: -10px; }
+        .env-corner-svg.tr { top: -10px; right: -10px; transform: scaleX(-1); }
+        .env-corner-svg.bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+        .env-corner-svg.br { bottom: -10px; right: -10px; transform: scale(-1); }
+
+        .envelope-wrapper { position: relative; cursor: pointer; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 310px; transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+        .envelope-wrapper:hover { transform: translateY(-10px) scale(1.02); }
+        .envelope-body { position: relative; width: 100%; height: 210px; margin: 0 auto; }
+        .env-svg-main { width: 100%; height: 100%; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9)) drop-shadow(0 10px 25px rgba(138,28,28,0.3)); transition: filter 0.4s ease; }
+        .envelope-wrapper:hover .env-svg-main { filter: drop-shadow(0 40px 70px rgba(0,0,0,1)) drop-shadow(0 15px 30px rgba(212,175,55,0.4)); }
+
+        .env-name-label { position: absolute; top: 72px; left: 0; right: 0; text-align: center; font-family: 'Pinyon Script', cursive; font-size: 46px; color: #1a0b0b; text-shadow: 0 1px 2px rgba(255,255,255,0.6); pointer-events: none; z-index: 15; line-height: 1; }
+        .env-date-label { position: absolute; top: 125px; left: 0; right: 0; text-align: center; font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 5px; color: #5a1c1c; pointer-events: none; z-index: 15; text-transform: uppercase; font-weight: 700; }
+
+        .env-flap-group { transform-origin: 155px 0px; transform-box: fill-box; transition: transform 0.9s cubic-bezier(0.4,0,0.2,1) 0.1s; }
+        .envelope-wrapper.open .env-flap-group { transform: rotateX(-176deg); }
+
+        .letter-peek { position: absolute; left: 50%; transform: translateX(-50%); width: 275px; background: linear-gradient(180deg, #fffdf8 0%, #fcf3df 100%); border-radius: 4px; border: 1px solid rgba(212,175,55,0.5); z-index: 5; overflow: hidden; top: 20px; height: 0; opacity: 0; transition: height 0.8s cubic-bezier(0.22,1,0.36,1) 0.7s, opacity 0.4s ease 0.7s, top 0.8s cubic-bezier(0.22,1,0.36,1) 0.7s; display: flex; align-items: flex-start; justify-content: center; padding-top: 14px; box-shadow: 0 -10px 40px rgba(0,0,0,0.4); }
+        .envelope-wrapper.open .letter-peek { height: 95px; opacity: 1; top: -55px; }
+        .letter-peek-inner { text-align: center; opacity: 0; transition: opacity 0.5s ease 1.3s; }
+        .envelope-wrapper.open .letter-peek-inner { opacity: 1; }
+        .letter-peek-name { font-family: 'Pinyon Script', cursive; font-size: 36px; color: #8a1c1c; line-height: 1; }
+        .letter-peek-date { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px; color: #b08d42; margin-top: 6px; text-transform: uppercase; font-weight: 600;}
+
+        .wax-seal { position: absolute; top: 143px; left: 50%; transform: translateX(-50%); width: 65px; height: 65px; z-index: 20; transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s, opacity 0.4s ease 0.15s; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5)); }
+        .envelope-wrapper.open .wax-seal { transform: translateX(-50%) scale(0) rotate(90deg); opacity: 0; }
+        .wax-seal img { width: 100%; height: 100%; object-fit: contain; }
+
+        .hint-text { margin-top: 40px; text-align: center; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 6px; color: rgba(254,241,200,0.9); animation: pulse 2s infinite; text-transform: uppercase; z-index: 10; }
+
+        /* ====== MAIN INVITATION FRAME ====== */
+        #main-invitation { min-height: 100vh; position: relative; display: flex; flex-direction: column; align-items: center; padding: 40px 15px; opacity: 0; transform: translateY(20px); transition: opacity 1.5s ease-out 0.6s, transform 1.5s ease-out 0.6s; z-index: 2; }
+        body.content-active #main-invitation { opacity: 1; transform: translateY(0); }
+
+        .invitation-frame {
+            max-width: 500px; width: 100%; border: 1px solid rgba(255,255,255,0.15); text-align: center; position: relative;
+            background: rgba(15, 8, 8, 0.65);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(212,175,55,0.2), inset 0 0 40px rgba(212, 175, 55, 0.05);
+            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border-radius: 20px; overflow: hidden;
+        }
+
+        /* ====== SECCIONES EDITORIALES (Bandas Dinámicas) ====== */
+        .section-band { padding: 60px 30px; position: relative; width: 100%; z-index: 2; overflow: hidden; }
+        
+        .band-transparent { background: transparent; }
+        
+        .band-beige {
+            background: linear-gradient(-45deg, var(--bg-beige), #f9f6e8, var(--bg-beige));
+            background-size: 200% 200%; animation: gradientShift 12s ease infinite; color: var(--text-deep);
+            box-shadow: 0 -15px 30px rgba(0,0,0,0.3), 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .band-rojo {
+            background: linear-gradient(135deg, var(--bg-rojo-oscuro), #3a0808);
+            background-size: 200% 200%; animation: gradientShift 15s ease infinite alternate; color: var(--text-light);
+            border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3);
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.8);
+        }
+        
+        .band-dorado {
+            background: rgba(20, 15, 10, 0.85);
+            border-top: 1px solid rgba(212,175,55,0.4); border-bottom: 1px solid rgba(212,175,55,0.4);
+        }
+        
+        /* Orbes brillantes traseros para profundidad en las bandas */
+        .section-band::before {
+            content: ''; position: absolute; width: 250px; height: 250px; border-radius: 50%;
+            background: var(--gold-gradient); filter: blur(80px); opacity: 0.15; top: -50px; left: -50px; z-index: -1;
+        }
+        .section-band::after {
+            content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+            background: rgba(138,28,28,0.5); filter: blur(90px); opacity: 0.15; bottom: -100px; right: -50px; z-index: -1;
+        }
+
+        /* ====== TIPOGRAFÍA Y FOIL EFFECT ====== */
+        .gold-text { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: var(--text-gold); display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .band-beige .gold-text { filter: none; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+
+        .hashtag-text { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(22px, 6vw, 26px); margin: 15px 0 35px 0; letter-spacing: 1.5px; font-weight: 600; }
+        .section-heading { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(30px, 8vw, 38px); font-weight: 500; letter-spacing: 1.5px; margin-bottom: 20px; line-height: 1.2; }
+        .section-heading-sm { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(22px, 6vw, 26px); font-weight: 500; letter-spacing: 1.5px; margin-bottom: 15px; }
+        .section-tag { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; }
+
+        .main-title { font-family: 'Pinyon Script', cursive; font-size: clamp(80px, 18vw, 100px); color: #fef1c8; margin-bottom: 5px; text-shadow: 0 4px 15px rgba(212,175,55,0.4); line-height: 0.9; }
+        .full-name { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 8px; color: var(--text-gold); margin-bottom: 40px; font-weight: 700; text-transform: uppercase; opacity: 0.9; }
+
+        .phrase { font-family: 'EB Garamond', 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(20px, 5.5vw, 24px); color: #e6dfd5; line-height: 1.7; margin: 15px auto 40px auto; max-width: 95%; font-weight: 400; text-align: center; }
+        .band-beige .phrase { color: var(--text-deep); font-weight: 500; }
+
+        .family-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 6vw, 24px); font-weight: 600; font-style: italic; color: #fef1c8; line-height: 1.6; margin-top: 10px; }
+        .info-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; color: var(--text-gold); text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+        .info-block { margin-bottom: 40px; }
+
+        /* ====== DIVIDER ====== */
+        .divider-ornate { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 0 auto; width: 85%; }
+        .divider-ornate::before, .divider-ornate::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.8)); }
+        .divider-ornate::after { background: linear-gradient(to left, transparent, rgba(212,175,55,0.8)); }
+        .divider-ornate svg { width: 22px; height: 22px; fill: var(--text-gold); opacity: 1; filter: drop-shadow(0 0 5px rgba(212,175,55,0.5)); }
+
+        .band-beige .divider-ornate::before { background: linear-gradient(to right, transparent, rgba(138,28,28,0.4)); }
+        .band-beige .divider-ornate::after { background: linear-gradient(to left, transparent, rgba(138,28,28,0.4)); }
+        .band-beige .divider-ornate svg { fill: var(--text-rose); filter: none; }
+        
+        .band-rojo .divider-ornate::before { background: linear-gradient(to right, transparent, rgba(212,175,55,0.6)); }
+        .band-rojo .divider-ornate::after { background: linear-gradient(to left, transparent, rgba(212,175,55,0.6)); }
+
+        /* ====== CAJA DESTACADA DRESS CODE ====== */
+        .dress-code-alert {
+            background: rgba(255,255,255,0.95);
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            margin: 30px auto 0 auto;
+            max-width: 95%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2), inset 0 0 15px rgba(212,175,55,0.1);
+            position: relative;
+        }
+        .dress-code-alert p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-deep);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .dress-code-alert span {
+            color: var(--text-rose);
+            font-weight: 800;
+            display: inline-block;
+            background: var(--red-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ====== ITINERARIO (TIMELINE) ====== */
+        .timeline-container { position: relative; margin: 40px auto 10px auto; padding-left: 30px; text-align: left; max-width: 90%; }
+        .timeline-container::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, transparent, var(--text-gold), transparent); }
+        .timeline-item { position: relative; margin-bottom: 35px; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot { position: absolute; left: -30px; top: 5px; width: 18px; height: 18px; background: #0f0808; border: 2px solid var(--text-gold); border-radius: 50%; box-shadow: 0 0 10px rgba(212,175,55,0.6); display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .timeline-dot::after { content: ''; width: 6px; height: 6px; background: var(--text-gold); border-radius: 50%; }
+        .timeline-time { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: var(--text-gold); letter-spacing: 2px; margin-bottom: 5px; }
+        .timeline-title { font-family: 'Bodoni Moda', serif; font-size: 22px; color: var(--text-light); line-height: 1.2; margin-bottom: 5px; }
+        .timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 11px; color: #ccc; font-weight: 400; line-height: 1.5; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ====== COUNTDOWN ====== */
+        .countdown-grid { display: flex; justify-content: center; gap: 10px; margin: 25px auto 15px auto; max-width: 100%; flex-wrap: nowrap; }
+        .countdown-item { flex: 1; background: rgba(255,255,255,0.9); border: 1px solid rgba(212,175,55,0.5); padding: 18px 2px; border-radius: 14px; box-shadow: 0 15px 30px rgba(0,0,0,0.1), inset 0 0 15px rgba(255,255,255,1); backdrop-filter: blur(10px); }
+        .countdown-number { font-family: 'Bodoni Moda', serif; font-size: clamp(22px, 6vw, 28px); font-weight: 600; color: var(--text-deep); display: block; }
+        .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-rose); font-weight: 700; margin-top: 6px; display: block; }
+
+        /* ====== CALENDARIO ====== */
+        .calendar-widget { margin-top: 30px; background: rgba(255,255,255,0.95); border: 1px solid rgba(212,175,55,0.4); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); max-width: 340px; margin-left: auto; margin-right: auto; position: relative; }
+        .calendar-header { padding: 25px 20px 15px; text-align: center; position: relative; background: linear-gradient(180deg, rgba(212,175,55,0.15), transparent); border-bottom: 1px solid rgba(212,175,55,0.2); }
+        .calendar-year { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 6px; text-transform: uppercase; color: var(--text-rose); font-weight: 700; }
+        .calendar-month { margin-top: 5px; font-family: 'Pinyon Script', cursive; font-size: 46px; color: var(--text-deep); line-height: 1; }
+        .calendar-body { padding: 15px 15px 25px; }
+        .calendar-days-header { display: grid; grid-template-columns: repeat(7,1fr); margin-bottom: 15px; }
+        .calendar-day-name { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; }
+        .cal-day { width: clamp(28px, 8vw, 34px); height: clamp(28px, 8vw, 34px); margin: auto; display: flex; align-items: center; justify-content: center; font-family: 'Bodoni Moda', serif; font-size: 17px; color: var(--text-deep); border-radius: 50%; transition: all .4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .cal-day.empty { opacity: 0; }
+        .cal-day.highlight { border: none; background: var(--gold-gradient); -webkit-text-fill-color: white; color: white; font-weight: 600; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5); transform: scale(1.15); }
+
+        /* ====== UBICACIONES ====== */
+        .location-section { margin-top: 45px; text-align: center; }
+        .location-tipo { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-gold); margin-bottom: 12px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .location-nombre { font-family: 'Bodoni Moda', serif; font-size: clamp(24px, 7vw, 30px); font-style: italic; color: #fef1c8; line-height: 1.3; margin-bottom: 25px; }
+        .map-wrapper { width: 100%; height: 260px; border-radius: 16px; overflow: hidden; border: 2px solid rgba(212,175,55,0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.4); position: relative; }
+        .map-wrapper iframe { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ====== BOTONES PREMIUM ====== */
+        .btn-confirmar {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; max-width: 320px; padding: 20px 24px; margin: 20px auto 0 auto;
+            background: var(--gold-gradient); color: #fff; border: none; font-family: 'Cinzel', serif; font-size: 11px;
+            letter-spacing: 4px; text-transform: uppercase; cursor: pointer; font-weight: 700; border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3); position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .btn-confirmar::before { content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent); transform: skewX(-25deg); animation: shine 4s infinite; }
+        .btn-confirmar:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(212, 175, 55, 0.5); }
+        .btn-confirmar:active { transform: translateY(0); }
+        .btn-confirmar svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2)); }
+        
+        .btn-secondary { background: rgba(20,15,10,0.6); color: var(--text-gold); border: 1px solid var(--text-gold); box-shadow: 0 10px 20px rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
+        .btn-secondary::before { display: none; }
+        .btn-secondary svg { fill: var(--text-gold); }
+        .btn-secondary:hover { background: rgba(212, 175, 55, 0.15); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); border-color: #fef1c8; color: #fef1c8; }
+        .btn-secondary:hover svg { fill: #fef1c8; }
+
+        .band-beige .btn-secondary { background: rgba(255,255,255,0.7); border-color: var(--text-rose); color: var(--text-deep); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .band-beige .btn-secondary svg { fill: var(--text-rose); }
+        
+        .band-rojo .btn-secondary { background: rgba(20,10,10,0.5); border-color: var(--text-gold); color: var(--text-light); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+        /* Inputs */
+        .rsvp-input-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; color: var(--text-rose); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 12px; text-align: left;}
+        .rsvp-input { width: 100%; padding: 18px 20px; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-deep); background: rgba(255,255,255,0.95); border: 2px solid rgba(212,175,55,0.4); border-radius: 12px; outline: none; transition: all 0.4s; box-shadow: inset 0 5px 10px rgba(0,0,0,0.03); }
+        .rsvp-input:focus { border-color: var(--text-rose); box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.2), inset 0 5px 10px rgba(0,0,0,0.02); background: #fff; }
+        .rsvp-input::placeholder { color: rgba(90, 70, 52, 0.5); }
+        .rsvp-input-wrap { margin-bottom: 25px; }
+        .rsvp-intro { font-family:'Cormorant Garamond',serif; font-size: clamp(18px, 5vw, 22px); font-style:italic; color:var(--text-muted); margin-bottom:30px; line-height:1.6; }
+        .band-transparent .rsvp-intro, .band-rojo .rsvp-intro { color: #e6dfd5; }
+
+        /* ====== UTILIDADES ====== */
+        #music-control-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; border-radius: 50%; background: rgba(20,15,10,0.85); border: 2px solid var(--text-gold); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); backdrop-filter: blur(10px); }
+        #music-control-btn:hover { transform: scale(1.15); background: var(--text-gold); }
+        #music-control-btn:hover svg { fill: #0f0808; }
+        #music-control-btn.visible { opacity: 1; visibility: visible; }
+        #music-control-btn svg { width: 26px; height: 26px; fill: var(--text-gold); transition: fill 0.3s; }
+        
+        #glitter-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 1s; }
+        #glitter-canvas.visible { opacity: 1; }
+        
+        .flower-petal { position: absolute; border-radius: 150% 0 150% 0; pointer-events: none; animation: float-up infinite ease-in; opacity: 0; }
+        @keyframes float-up { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        
+        /* ====== OPTIMIZACIÓN MÓVIL ====== */
+        @media(max-width: 768px) {
+            .invitation-frame { border-radius: 0; border-left: none; border-right: none; box-shadow: none; }
+            #main-invitation { padding: 0; }
+            .section-band { padding: 50px 20px; }
+            .map-wrapper { height: 220px; }
+        }
+
+        @media(max-width: 480px){
+            .section-band { padding: 45px 15px; }
+            .countdown-item { padding: 12px 2px; }
+            .btn-confirmar { font-size: 10px; padding: 16px 20px; letter-spacing: 2px; }
+            .map-wrapper { height: 200px; border-radius: 12px; }
+            .envelope-wrapper { transform: scale(0.9); }
+            .envelope-wrapper:hover { transform: translateY(-5px) scale(0.92); }
+            .calendar-widget { max-width: 100%; }
+            .timeline-container { padding-left: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <audio id="song" src="assets/song.mp3" loop preload="auto"></audio>
+    <canvas id="glitter-canvas"></canvas>
+    
+    <button id="music-control-btn" onclick="toggleMusic()" aria-label="Control de música">
+        <svg id="music-icon" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </button>
+
+    <div id="envelope-screen">
+        <div id="env-stars"></div>
+        
+        <!-- Esquinas del sobre -->
+        <svg class="env-corner-svg tl" viewBox="0 0 130 130" fill="none">
+            <path d="M10 65 C10 30 40 10 65 10 C50 35 35 50 10 65Z" fill="#8a1c1c" opacity="0.4"/>
+            <path d="M10 65 C35 50 55 35 65 10 C45 20 20 45 10 65Z" fill="#d4af37" opacity="0.3"/>
+            <circle cx="32" cy="32" r="2.5" fill="#d4af37" opacity="0.9"/>
+        </svg>
+        <svg class="env-corner-svg tr" viewBox="0 0 130 130" fill="none">
+            <path d="M10 65 C10 30 40 10 65 10 C50 35 35 50 10 65Z" fill="#8a1c1c" opacity="0.4"/>
+            <path d="M10 65 C35 50 55 35 65 10 C45 20 20 45 10 65Z" fill="#d4af37" opacity="0.3"/>
+            <circle cx="32" cy="32" r="2.5" fill="#d4af37" opacity="0.9"/>
+        </svg>
+        <svg class="env-corner-svg bl" viewBox="0 0 130 130" fill="none">
+            <path d="M10 65 C10 30 40 10 65 10 C50 35 35 50 10 65Z" fill="#8a1c1c" opacity="0.4"/>
+            <path d="M10 65 C35 50 55 35 65 10 C45 20 20 45 10 65Z" fill="#d4af37" opacity="0.3"/>
+            <circle cx="32" cy="32" r="2.5" fill="#d4af37" opacity="0.9"/>
+        </svg>
+        <svg class="env-corner-svg br" viewBox="0 0 130 130" fill="none">
+            <path d="M10 65 C10 30 40 10 65 10 C50 35 35 50 10 65Z" fill="#8a1c1c" opacity="0.4"/>
+            <path d="M10 65 C35 50 55 35 65 10 C45 20 20 45 10 65Z" fill="#d4af37" opacity="0.3"/>
+            <circle cx="32" cy="32" r="2.5" fill="#d4af37" opacity="0.9"/>
+        </svg>
+
+        <div class="envelope-wrapper" id="envelopeWrapperNew">
+            <div class="letter-peek">
+                <div class="letter-peek-inner">
+                    <div class="letter-peek-name">Mia</div>
+                    <div class="letter-peek-date">24 · Oct · 2026</div>
+                </div>
+            </div>
+
+            <div class="envelope-body">
+                <svg class="env-svg-main" viewBox="0 0 310 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGrad2" x1="0" y1="0" x2="310" y2="210" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#fef1c8"/>
+                            <stop offset="30%" stop-color="#d4af37"/>
+                            <stop offset="60%" stop-color="#c5a059"/>
+                            <stop offset="100%" stop-color="#9e7f1e"/>
+                        </linearGradient>
+                        <linearGradient id="envBase2" x1="0" y1="0" x2="0" y2="210" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#e3dac9"/>
+                            <stop offset="100%" stop-color="#c4b096"/>
+                        </linearGradient>
+                        <linearGradient id="envLeft2" x1="0" y1="0" x2="155" y2="105" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#f5eadd"/>
+                            <stop offset="100%" stop-color="#d6c6b0"/>
+                        </linearGradient>
+                        <linearGradient id="envRight2" x1="310" y1="0" x2="155" y2="105" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#efe2cf"/>
+                            <stop offset="100%" stop-color="#c4ae8f"/>
+                        </linearGradient>
+                        <linearGradient id="envBottom2" x1="155" y1="210" x2="155" y2="130" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#faf2e6"/>
+                            <stop offset="100%" stop-color="#d6c6b0"/>
+                        </linearGradient>
+                        <linearGradient id="flapGrad2" x1="0" y1="0" x2="310" y2="140" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#8a1c1c"/>
+                            <stop offset="100%" stop-color="#5c1010"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="310" height="210" rx="5" fill="url(#envBase2)"/>
+                    <rect x="0.4" y="0.4" width="309.2" height="209.2" rx="4.6" stroke="url(#goldGrad2)" stroke-width="1.5" fill="none" opacity="0.9"/>
+                    <rect x="8" y="8" width="294" height="194" rx="3" stroke="url(#goldGrad2)" stroke-width="0.8" fill="none" opacity="0.6"/>
+                    <polygon points="0,0 155,105 0,210" fill="url(#envLeft2)" opacity="0.98"/>
+                    <polygon points="310,0 155,105 310,210" fill="url(#envRight2)" opacity="0.98"/>
+                    <polygon points="0,210 155,105 310,210" fill="url(#envBottom2)" opacity="1"/>
+                    <line x1="0" y1="0" x2="155" y2="105" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.5"/>
+                    <line x1="310" y1="0" x2="155" y2="105" stroke="url(#goldGrad2)" stroke-width="1" opacity="0.5"/>
+                    
+                    <g class="env-flap-group" id="envFlapMain">
+                        <polygon points="0,0 155,125 310,0" fill="url(#flapGrad2)"/>
+                        <polyline points="0,0 155,125 310,0" stroke="url(#goldGrad2)" stroke-width="2" fill="none" opacity="1"/>
+                    </g>
+                </svg>
+                
+                <div class="env-name-label">Mia</div>
+                <div class="env-date-label">Mis XV Años &nbsp;·&nbsp; 2026</div>
+
+                <div class="wax-seal">
+                    <img src="assets/sello.png" alt="Sello Invytia">
+                </div>
+            </div>
+        </div>
+        
+        <div class="hint-text">Toca para abrir</div>
+    </div>
+
+    <main id="main-invitation">
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div id="lanterns-container" style="position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:1;"></div>
+
+        <div class="invitation-frame">
+            
+            <!-- SECCIÓN 1: HEADER & HERO (TRANSPARENTE OSCURO) -->
+            <div class="section-band band-transparent" style="padding-top: 80px;">
+                <div class="section-tag gold-text reveal-blur delay-1">Mis XV Años</div>
+                <h1 class="main-title reveal-scale delay-2">Mia</h1>
+                <div class="full-name reveal-fade delay-4">Márquez</div>
+
+                <div class="hashtag-text gold-text reveal-blur delay-3">#MisXVMia</div>
+
+                <p class="phrase reveal-left delay-2">
+                    Hay momentos que merecen ser compartidos con quienes más queremos. ¡Gracias por acompañarme en mis XV!
+                </p>
+                
+                <div class="divider-ornate reveal-scale delay-1" style="margin: 50px auto;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                </div>
+
+                <div class="info-block reveal-right delay-2">
+                    <div class="info-label">Con la bendición de mis padres</div>
+                    <div class="family-names">Juan Alejandro Márquez Landín<br>Anallely López Martínez</div>
+                </div>
+                
+                <div class="info-block reveal-left delay-3">
+                    <div class="info-label">Mis Padrinos</div>
+                    <div class="family-names">Eduardo Adrian Valdez Rivera<br>Nancy Cristina Márquez Landín</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: FECHA Y COUNTDOWN (BANDA BEIGE) -->
+            <div class="section-band band-beige">
+                <div class="reveal-blur">
+                    <div class="section-heading-sm gold-text">Faltan</div>
+                    <div class="countdown-grid" id="countdown-timer">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Hrs</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Min</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Seg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider-ornate reveal-scale" style="margin: 50px auto;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                </div>
+
+                <div class="reveal-fade">
+                    <div class="section-heading gold-text reveal-left">El Gran Día</div>
+                    <div class="reveal-right delay-1" style="font-family:'Cinzel',serif;font-size:clamp(26px, 7vw, 32px);font-weight:700;color:var(--text-deep);letter-spacing:4px;">24 · OCT · 2026</div>
+                    <div class="reveal-left delay-2" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px, 6vw, 24px);color:var(--text-deep);margin-top:5px;font-weight:600;">Sábado</div>
+                    
+                    <div class="calendar-widget reveal-scale delay-3">
+                        <div class="calendar-header">
+                            <span class="calendar-year">2026</span>
+                            <div class="calendar-month">Octubre</div>
+                        </div>
+                        <div class="calendar-body">
+                            <div class="calendar-days-header">
+                                <span class="calendar-day-name">Do</span>
+                                <span class="calendar-day-name">Lu</span>
+                                <span class="calendar-day-name">Ma</span>
+                                <span class="calendar-day-name">Mi</span>
+                                <span class="calendar-day-name">Ju</span>
+                                <span class="calendar-day-name">Vi</span>
+                                <span class="calendar-day-name">Sá</span>
+                            </div>
+                            <div class="calendar-grid">
+                                <!-- Octubre 2026 inicia en Jueves -->
+                                <span class="cal-day empty"></span>
+                                <span class="cal-day empty"></span>
+                                <span class="cal-day empty"></span>
+                                <span class="cal-day empty"></span>
+                                <span class="cal-day">1</span>
+                                <span class="cal-day">2</span>
+                                <span class="cal-day">3</span>
+                                <span class="cal-day">4</span>
+                                <span class="cal-day">5</span>
+                                <span class="cal-day">6</span>
+                                <span class="cal-day">7</span>
+                                <span class="cal-day">8</span>
+                                <span class="cal-day">9</span>
+                                <span class="cal-day">10</span>
+                                <span class="cal-day">11</span>
+                                <span class="cal-day">12</span>
+                                <span class="cal-day">13</span>
+                                <span class="cal-day">14</span>
+                                <span class="cal-day">15</span>
+                                <span class="cal-day">16</span>
+                                <span class="cal-day">17</span>
+                                <span class="cal-day">18</span>
+                                <span class="cal-day">19</span>
+                                <span class="cal-day">20</span>
+                                <span class="cal-day">21</span>
+                                <span class="cal-day">22</span>
+                                <span class="cal-day">23</span>
+                                <span class="cal-day highlight">24</span>
+                                <span class="cal-day">25</span>
+                                <span class="cal-day">26</span>
+                                <span class="cal-day">27</span>
+                                <span class="cal-day">28</span>
+                                <span class="cal-day">29</span>
+                                <span class="cal-day">30</span>
+                                <span class="cal-day">31</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-confirmar btn-secondary reveal-blur delay-4" onclick="addToCalendar()">
+                        <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.89 3 3 3.9 3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V9h14v10zm0-12H5V5h14v2zM7 11h5v5H7z"/></svg>
+                        Agendar Evento
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: UBICACIONES (BANDA DORADA OSCURA) -->
+            <div class="section-band band-dorado">
+                <div class="section-heading gold-text reveal-scale">Ubicaciones</div>
+                
+                <div class="location-section reveal-left delay-1">
+                    <div class="location-tipo">Ceremonia Religiosa - 4:30 p.m.</div>
+                    <div class="location-nombre">Parroquia San Felipe De Jesús</div>
+                    <div class="map-wrapper" style="margin-bottom:20px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.109889011241!2d-102.30561829999999!3d21.891843800000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee8b42f241cd%3A0x46a25746d00ad133!2sParroquia%20San%20Felipe%20De%20Jes%C3%BAs!5e0!3m2!1ses-419!2smx!4v1786321874659!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/AokJGQwvYoMFdm6e9" target="_blank" style="text-decoration:none;">
+                        <button class="btn-confirmar">Ver en Mapa</button>
+                    </a>
+                </div>
+                
+                <div class="divider-ornate reveal-blur" style="width: 40%; margin: 60px auto;">
+                    <div style="width: 10px; height: 10px; background:var(--text-gold); transform:rotate(45deg); box-shadow: 0 0 10px rgba(212,175,55,0.8);"></div>
+                </div>
+
+                <div class="location-section reveal-right delay-1">
+                    <div class="location-tipo">Recepción - 5:30 p.m.</div>
+                    <div class="location-nombre">Salón Los Girasoles</div>
+                    <div class="map-wrapper" style="margin-bottom:20px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.6767277309655!2d-102.30305242474735!3d21.946975855609494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ef9df7c6cfdb%3A0x4714dfb4597685f6!2sLos%20Girasoles!5e0!3m2!1ses-419!2smx!4v1786321958730!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/3bFKK1GsGkktnMVn9" target="_blank" style="text-decoration:none;">
+                        <button class="btn-confirmar">Ver en Mapa</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: ITINERARIO (NUEVA BANDA ROJA) -->
+            <div class="section-band band-rojo">
+                <div class="section-heading gold-text reveal-scale">Itinerario</div>
+                <p class="rsvp-intro reveal-blur delay-1" style="color:var(--text-light); opacity: 0.9;">Acompáñame a disfrutar cada momento de esta noche mágica.</p>
+                
+                <div class="timeline-container">
+                    
+                    <div class="timeline-item reveal-left delay-1">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">5:30 P.M.</div>
+                        <div class="timeline-title">Llegada al Salón</div>
+                    </div>
+                    
+                    <div class="timeline-item reveal-right delay-2">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">7:00 P.M. - 9:00 P.M.</div>
+                        <div class="timeline-title">Cena</div>
+                        <div class="timeline-desc">*Trata de llegar temprano porque solo se servirá a esta hora.</div>
+                    </div>
+                    
+                    <div class="timeline-item reveal-left delay-3">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">8:00 P.M.</div>
+                        <div class="timeline-title">El Vals</div>
+                    </div>
+                    
+                    <div class="timeline-item reveal-right delay-4">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">9:00 P.M. - 11:00 P.M.</div>
+                        <div class="timeline-title">Entrada con Banda</div>
+                        <div class="timeline-desc">Música de banda y Las Mañanitas</div>
+                    </div>
+                    
+                    <div class="timeline-item reveal-left delay-1">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">10:30 P.M.</div>
+                        <div class="timeline-title">Chascas</div>
+                    </div>
+
+                    <div class="timeline-item reveal-right delay-2">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">11:00 P.M. - 1:00 A.M.</div>
+                        <div class="timeline-title">Baile con Conjunto</div>
+                    </div>
+
+                    <div class="timeline-item reveal-left delay-3">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-time">12:00 A.M.</div>
+                        <div class="timeline-title">Snacks</div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- SECCIÓN 5: DRESS CODE & REGALOS (BANDA BEIGE) -->
+            <div class="section-band band-beige">
+                <div class="section-heading gold-text reveal-left">Dress Code</div>
+                
+                <div class="dress-code-alert reveal-right delay-1">
+                    <p>
+                        <span>Formal y Vaquera</span>
+                    </p>
+                </div>
+
+                <div class="divider-ornate reveal-scale" style="margin: 50px auto;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                </div>
+
+                <div class="section-heading gold-text reveal-right">Mesa de Regalos</div>
+                <p class="rsvp-intro reveal-left delay-1" style="color:var(--text-deep);">Tu presencia es nuestro mayor regalo y lo más importante para mí, pero si deseas tener un detalle, cualquier obsequio será bien recibido.</p>
+                
+                <div class="reveal-scale delay-2" style="margin-bottom:30px;">
+                    <svg viewBox="0 0 24 24" style="width:45px; height:45px; fill:var(--text-gold); margin-bottom:15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">
+                        <path d="M22 4H2.01L2 20h20V4zm-2 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                    </svg>
+                    <div style="font-family:'Cinzel',serif;font-size:clamp(16px, 5vw, 18px);font-weight:800;letter-spacing:3px;color:var(--text-deep);">Lluvia de Sobres</div>
+                </div>
+
+                <div class="reveal-blur delay-3">
+                    <svg viewBox="0 0 24 24" style="width:45px; height:45px; fill:var(--text-gold); margin-bottom:15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">
+                        <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
+                    </svg>
+                    <div style="font-family:'Cinzel',serif;font-size:clamp(16px, 5vw, 18px);font-weight:800;letter-spacing:3px;color:var(--text-deep);">Regalo al Gusto</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 6: PLAYLIST & FOTOS (BANDA TRANSPARENTE) -->
+            <div class="section-band band-transparent">
+                <div class="section-heading gold-text reveal-blur">Nuestra Playlist</div>
+                <p class="rsvp-intro reveal-left delay-1">¡Ayúdame a armar el soundtrack de esta noche vaquera! Escucha lo que tenemos y agrega tus favoritas.</p>
+                
+                <div class="reveal-scale delay-2" style="border-radius:16px; overflow:hidden; margin-bottom:30px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 15px 35px rgba(0,0,0,0.05);">
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/003SAkRVYufLsQzqrCpo36?utm_source=generator&si=8dbf9abc1b3a42d0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+                
+                <a href="https://open.spotify.com/playlist/003SAkRVYufLsQzqrCpo36?si=cedbc259bf8a4440&pt=617be2a929953b5e4a49597769e736f7" target="_blank" style="text-decoration:none;" class="reveal-blur delay-3">
+                    <button class="btn-confirmar" style="background: linear-gradient(135deg, #1DB954, #1aa34a); box-shadow: 0 10px 25px rgba(29, 185, 84, 0.2);">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15.06 10.56 18.72 12.84c.361.181.54.78.24 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.239.54-.959.72-1.56.3z"/></svg>
+                        Agregar Canción
+                    </button>
+                </a>
+
+                <div class="divider-ornate reveal-scale" style="margin: 50px auto;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                </div>
+
+                <div class="section-heading gold-text reveal-right">Momentos en Vivo</div>
+                <p class="rsvp-intro reveal-left delay-1">Ayúdanos a capturar los mejores momentos. Toca el botón para subir tus fotos durante el evento.</p>
+                
+                <a href="https://drive.google.com/drive/folders/1rvypprSmxp1HnfG9T2Mi4wWn63vFMoLj?usp=sharing" target="_blank" style="text-decoration:none;" class="reveal-scale delay-2">
+                    <button class="btn-confirmar">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 3c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/></svg>
+                        Subir Fotos Aquí
+                    </button>
+                </a>
+                <p class="reveal-blur delay-3" style="font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(254,241,200,0.6); margin-top:15px; text-transform:uppercase; letter-spacing:1px; font-weight:600; padding: 0 10px;">
+                    *Deben tener descargada la app de Google Drive
+                </p>
+            </div>
+
+            <!-- SECCIÓN 7: RSVP & MURO DE DESEOS (BANDA ROJA OSCURA) -->
+            <div class="section-band band-rojo">
+                <div class="section-heading gold-text reveal-left">Confirmación</div>
+                <p class="rsvp-intro reveal-right delay-1" style="color:var(--text-light); opacity: 0.9;">Será un honor contar con tu presencia en esta noche tan especial. Por favor confirma tu asistencia.</p>
+                
+                <div class="rsvp-input-wrap reveal-blur delay-2">
+                    <label class="rsvp-input-label" for="guest-name" style="color:var(--text-gold);">Nombre Completo</label>
+                    <input type="text" id="guest-name" class="rsvp-input" placeholder="Escribe tu nombre aquí…">
+                </div>
+                
+                <button onclick="sendConfirmationViaWhatsApp()" class="btn-confirmar reveal-scale delay-3">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                    Confirmar por WhatsApp
+                </button>
+
+                <div class="divider-ornate reveal-scale" style="margin: 50px auto;">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/></svg>
+                </div>
+
+                <div class="section-heading gold-text reveal-right">Buenos Deseos</div>
+                <p class="rsvp-intro reveal-left delay-1" style="color:var(--text-light); opacity: 0.9;">Deja un mensaje para Mia. Tu mensaje se guardará con cariño en esta nueva etapa.</p>
+                
+                <form id="wish-form" style="text-align: left;" class="reveal-blur delay-2">
+                    <div class="rsvp-input-wrap">
+                        <label class="rsvp-input-label" for="wish-nombre" style="color:var(--text-gold);">Tu nombre</label>
+                        <input type="text" id="wish-nombre" class="rsvp-input" placeholder="Ej. Fernanda" required>
+                    </div>
+                    <div class="rsvp-input-wrap">
+                        <label class="rsvp-input-label" for="wish-mensaje" style="color:var(--text-gold);">Mensaje</label>
+                        <textarea id="wish-mensaje" class="rsvp-input" placeholder="Escribe aquí tus buenos deseos..." required style="min-height: 140px; resize: vertical; padding-top: 18px;"></textarea>
+                    </div>
+                    <button type="submit" id="btn-wish" class="btn-confirmar btn-secondary reveal-scale delay-3">
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                        Enviar por WhatsApp
+                    </button>
+                </form>
+            </div>
+
+            <div class="section-band band-transparent" style="padding-bottom:30px;">
+                <div class="invitation-footer reveal-fade" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;color:rgba(254,241,200,0.6);text-transform:uppercase;margin-top:20px;">
+                    Invytia Premium Concierge
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        let isPlaying = false;
+
+        /* ===== SCROLL REVEAL OBSERVER MEJORADO ===== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-fade').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        /* ===== SOBRE Y ESTRELLAS ===== */
+        (function() {
+            const container = document.getElementById('env-stars');
+            if (!container) return;
+            
+            container.style.cssText = 'position:absolute;inset:0;overflow:hidden;';
+            
+            for (let i = 0; i < 60; i++) {
+                const star = document.createElement('div');
+                star.className = 'env-star';
+                
+                const size = Math.random() * 3 + 1;
+                const duration = (Math.random() * 3 + 1.5).toFixed(1);
+                const delay = (Math.random() * 4).toFixed(1);
+                
+                star.style.cssText = `
+                    width: ${size}px; height: ${size}px; 
+                    top: ${Math.random() * 100}%; left: ${Math.random() * 100}%; 
+                    --d: ${duration}s; --delay: -${delay}s;
+                `;
+                
+                container.appendChild(star);
+            }
+        })();
+
+        document.getElementById('envelopeWrapperNew').addEventListener('click', openEnvelope);
+
+        function openEnvelope() {
+            const wrapper = document.getElementById('envelopeWrapperNew');
+            const screen = document.getElementById('envelope-screen');
+            const audio = document.getElementById('song');
+            const musicBtn = document.getElementById('music-control-btn');
+            
+            if (wrapper.classList.contains('open')) return;
+            wrapper.classList.add('open');
+            
+            if (audio) {
+                audio.play().then(() => { 
+                    isPlaying = true; 
+                    updateMusicIcon(); 
+                }).catch(() => { console.log("Autoplay preventivo del navegador."); });
+            }
+            
+            setTimeout(() => {
+                screen.classList.add('fade-out');
+                document.body.classList.add('content-active');
+                if (musicBtn) musicBtn.classList.add('visible');
+                
+                createFlowerPetals();
+                startGlitter();
+            }, 1400);
+        }
+
+        /* ===== MÚSICA ===== */
+        function toggleMusic() {
+            const audio = document.getElementById('song');
+            if (!audio) return;
+            
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play().catch(() => {});
+                isPlaying = true;
+            }
+            updateMusicIcon();
+        }
+
+        function updateMusicIcon() {
+            const icon = document.getElementById('music-icon');
+            if (!icon) return;
+            icon.innerHTML = isPlaying ? '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+        }
+
+        /* ===== WHATSAPP Y CALENDARIO ===== */
+        // NÚMERO ACTUALIZADO: 449-414-5959
+        const waNumber = '5214494145959';
+
+        function sendConfirmationViaWhatsApp() {
+            const inputName = document.getElementById('guest-name');
+            if (!inputName || !inputName.value.trim()) {
+                alert('Por favor ingresa tu nombre completo para confirmar tu asistencia.');
+                inputName.focus();
+                return;
+            }
+            const message = `¡Hola! Confirmo mi asistencia a los XV Años de Mia.\n\n• Nombre: ${inputName.value.trim()}`;
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function addToCalendar() {
+            const icsContent = [
+                'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//XV Años Mia//ES',
+                'BEGIN:VEVENT', 'DTSTART:20261024T163000', 'DTEND:20261025T010000',
+                'SUMMARY:XV Años de Mia Márquez',
+                'DESCRIPTION:Ceremonia 4:30 PM en Parroquia San Felipe De Jesús • Recepción 5:30 PM en Salón Los Girasoles',
+                'LOCATION:Parroquia San Felipe De Jesús / Salón Los Girasoles',
+                'STATUS:CONFIRMED', 'END:VEVENT', 'END:VCALENDAR'
+            ].join('\r\n');
+            
+            const anchor = document.createElement('a');
+            anchor.href = URL.createObjectURL(new Blob([icsContent], { type: 'text/calendar;charset=utf-8' }));
+            anchor.download = 'XV-Anios-Mia.ics';
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+
+        /* ===== CUENTA REGRESIVA ===== */
+        const targetDate = new Date("October 24, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const timeLeft = targetDate - Date.now();
+            if (timeLeft < 0) {
+                document.getElementById("countdown-timer").innerHTML = "<div style='font-family:\"Cinzel\",serif;color:var(--text-rose);letter-spacing:3px;font-size:20px;padding:10px 0;'>¡Llegó el Gran Día!</div>";
+                return;
+            }
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        /* ===== GLITTER ===== */
+        const canvas = document.getElementById('glitter-canvas');
+        const ctx = canvas.getContext('2d');
+        let glitterParticles = [];
+
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+
+        function makeParticle(x, y, burst) { 
+            return { 
+                x: x, y: y, 
+                vx: (Math.random() - 0.5) * (burst ? 3 : 0.6), 
+                vy: -Math.random() * (burst ? 2.5 : 0.6) - (burst ? 0.5 : 0.1), 
+                size: Math.random() * (burst ? 3.5 : 2.5) + 1.2, 
+                life: burst ? 1 : Math.random() * 0.5 + 0.5, 
+                decay: Math.random() * (burst ? 0.02 : 0.008) + 0.005, 
+                rotation: Math.random() * Math.PI * 2, 
+                rotSpeed: (Math.random() - 0.5) * 0.15, 
+                color: Math.random() > 0.6 ? '254,241,200' : Math.random() > 0.5 ? '212,175,55' : '255,255,255' 
+            }; 
+        }
+
+        function createGlitterBurst(x, y) { for (let i = 0; i < 20; i++) glitterParticles.push(makeParticle(x, y, true)); }
+        function spawnAmbient() { 
+            if (!document.body.classList.contains('content-active')) return; 
+            const x = Math.random() * window.innerWidth; 
+            const y = Math.random() * window.innerHeight * 0.8 + window.scrollY; 
+            glitterParticles.push(makeParticle(x, y, false));
+        }
+
+        function drawGlitter() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            glitterParticles = glitterParticles.filter(p => p.life > 0);
+            for (const p of glitterParticles) {
+                ctx.save(); ctx.translate(p.x, p.y - window.scrollY); ctx.rotate(p.rotation); ctx.globalAlpha = Math.min(p.life, 0.95);
+                const s = p.size; 
+                ctx.beginPath(); ctx.moveTo(0, -s * 1.6); ctx.lineTo(s * 0.45, -s * 0.45); ctx.lineTo(s * 1.6, 0); ctx.lineTo(s * 0.45, s * 0.45); ctx.lineTo(0, s * 1.6); ctx.lineTo(-s * 0.45, s * 0.45); ctx.lineTo(-s * 1.6, 0); ctx.lineTo(-s * 0.45, -s * 0.45); ctx.closePath();
+                ctx.fillStyle = `rgba(${p.color},${p.life * 0.85})`; ctx.fill();
+                ctx.beginPath(); ctx.arc(0, 0, s * 0.28, 0, Math.PI * 2); ctx.fillStyle = `rgba(255,255,255,${p.life})`; ctx.fill();
+                ctx.restore(); 
+                p.x += p.vx; p.y += p.vy; p.rotation += p.rotSpeed; p.life -= p.decay;
+            }
+            requestAnimationFrame(drawGlitter);
+        }
+
+        function startGlitter() { canvas.classList.add('visible'); drawGlitter(); setInterval(spawnAmbient, 400); }
+        document.addEventListener('click', e => { if (document.body.classList.contains('content-active')) createGlitterBurst(e.clientX, e.clientY); });
+
+        /* ===== PÉTALOS (TONOS VAQUEROS / BEIGE / ROJIZO) ====== */
+        function createFlowerPetals() {
+            const container = document.getElementById('lanterns-container');
+            const colors = ['#fef1c8', '#e8dcc7', '#8a1c1c', '#d4af37'];
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                const width = Math.random() * 8 + 6;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                petal.className = 'flower-petal';
+                petal.style.cssText = `width: ${width}px; height: ${width * 1.3}px; left: ${Math.random() * 100}%; bottom: -30px; background-color: ${color}; animation-duration: ${Math.random() * 12 + 6}s; animation-delay: ${Math.random() * 5}s; box-shadow: 0 0 5px rgba(0,0,0,0.3); opacity: 0.8;`;
+                container.appendChild(petal);
+            }
+        }
+
+        /* ===== MURO DE DESEOS ====== */
+        const wishForm = document.getElementById('wish-form');
+        if (wishForm) {
+            wishForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                const btn = document.getElementById('btn-wish');
+                const nombre = document.getElementById('wish-nombre').value;
+                const mensaje = document.getElementById('wish-mensaje').value;
+                const originalContent = btn.innerHTML;
+                
+                if(!nombre.trim() || !mensaje.trim()) return;
+
+                const wpMensaje = `¡Hola! Dejo mis buenos deseos para los XV Años de Mia:\n\nDe: ${nombre.trim()}\n\nMensaje: "${mensaje.trim()}"`;
+                
+                btn.innerHTML = 'Procesando...';
+                btn.style.opacity = '0.7';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(wpMensaje)}`, '_blank');
+                    btn.innerHTML = '¡Mensaje Listo!';
+                    btn.style.background = 'linear-gradient(135deg, rgba(212,175,55,0.9), rgba(181,144,77,0.9))';
+                    btn.style.opacity = '1';
+                    wishForm.reset();
+                    setTimeout(() => { btn.innerHTML = originalContent; btn.style.background = ''; btn.disabled = false; }, 3000);
+                }, 600);
+            });
+        }
+    </script>
+</body>
+</html>
