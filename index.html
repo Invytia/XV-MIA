@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600;700;800&family=Pinyon+Script&family=Montserrat:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Vaquera Dinámica */
-            --bg-oscuro: #1c0e07; 
+            /* Paleta Vaquera Dinámica - Café Aclarado */
+            --bg-oscuro: #382013; /* Café chocolate más claro */
             --bg-rojo: #5a1111;
             --bg-beige: #f5eedc;
             
@@ -48,7 +48,6 @@
         /* ====== PANTALLA DEL SOBRE ====== */
         #envelope-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            /* Fondo aclarado a Beige con degradado suave para que el sobre oscuro destaque */
             background: radial-gradient(circle at center, #ffffff 0%, var(--bg-beige) 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 1000; transition: opacity 1.2s ease, visibility 1.2s; overflow: hidden;
@@ -68,20 +67,19 @@
         .env-flap-group { transform-origin: 160px 0px; transform-box: fill-box; transition: transform 1s cubic-bezier(0.4,0,0.2,1) 0.1s; }
         .envelope-wrapper.open .env-flap-group { transform: rotateX(-175deg); }
 
-        .letter-peek { position: absolute; left: 50%; transform: translateX(-50%); width: 285px; background: #3b2313; border-radius: 4px; border: 1px solid #d4a957; border-top: 2px dashed #9c752c; z-index: 5; overflow: hidden; top: 20px; height: 0; opacity: 0; transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s, opacity 0.4s ease 0.7s, top 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s; display: flex; align-items: flex-start; justify-content: center; padding-top: 15px; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
+        .letter-peek { position: absolute; left: 50%; transform: translateX(-50%); width: 285px; background: #4a2c1a; border-radius: 4px; border: 1px solid #d4a957; border-top: 2px dashed #9c752c; z-index: 5; overflow: hidden; top: 20px; height: 0; opacity: 0; transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s, opacity 0.4s ease 0.7s, top 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s; display: flex; align-items: flex-start; justify-content: center; padding-top: 15px; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
         .envelope-wrapper.open .letter-peek { height: 100px; opacity: 1; top: -60px; }
         .letter-peek-inner { text-align: center; opacity: 0; transition: opacity 0.6s ease 1.3s; }
         .envelope-wrapper.open .letter-peek-inner { opacity: 1; }
         .letter-peek-name { font-family: 'Pinyon Script', cursive; font-size: 42px; color: #fcebc0; line-height: 1; }
         .letter-peek-date { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--text-white); margin-top: 6px; text-transform: uppercase; font-weight: 700;}
 
-        /* Sello Limpio de Herradura */
+        /* Sello de Herradura (Color invertido a blanco puro) */
         .wax-seal { position: absolute; top: 135px; left: 50%; transform: translateX(-50%); width: 65px; height: 65px; z-index: 20; transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.2s, opacity 0.4s ease 0.15s; display: flex; align-items: center; justify-content: center; }
         .envelope-wrapper.open .wax-seal { transform: translateX(-50%) scale(0); opacity: 0; }
-        .wax-seal img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 5px 8px rgba(0,0,0,0.5)); transition: transform 0.3s ease; }
+        .wax-seal img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.6)); transition: transform 0.3s ease; }
         .envelope-wrapper:hover .wax-seal img { transform: rotate(10deg) scale(1.05); }
 
-        /* Ajuste de color del texto para que se lea sobre el fondo beige */
         .hint-text { margin-top: 50px; text-align: center; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 6px; color: var(--text-dark); animation: pulse 2.5s infinite; text-transform: uppercase; z-index: 10; font-weight: 800; opacity: 0.8;}
         @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
@@ -97,14 +95,13 @@
 
         .section-band { padding: 70px 20px; position: relative; width: 100%; z-index: 2; overflow: hidden;}
         
-        /* Paleta de Secciones */
-        .band-oscuro { background: linear-gradient(180deg, #2b1408 0%, #150a04 100%); color: var(--text-white); }
+        /* Paleta de Secciones - Café Aclarado */
+        .band-oscuro { background: linear-gradient(180deg, #4a2c1a 0%, #311b0f 100%); color: var(--text-white); }
         .band-beige { background: var(--bg-beige); color: var(--text-dark); border-top: 3px solid var(--text-gold); border-bottom: 3px solid var(--text-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 60px rgba(139,83,40,0.05); }
         .band-rojo { background: linear-gradient(135deg, #6e1a1a 0%, #4a0d0d 100%); color: var(--text-white); border-top: 2px dashed rgba(212,175,55,0.4); border-bottom: 2px dashed rgba(212,175,55,0.4); }
 
         /* ====== HEADER HERO ====== */
         .hero-band { padding: 80px 20px 60px 20px; }
-        /* Opacidad aumentada al 80% (0.8) como fue solicitado */
         .bg-horse-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; pointer-events: none; z-index: 0; animation: panHorse 25s infinite alternate ease-in-out; }
         @keyframes panHorse { 0% { transform: scale(1) translate(0, 0); } 100% { transform: scale(1.08) translate(-10px, 10px); } }
         
@@ -116,7 +113,7 @@
         .hero-date { font-family: 'Cinzel', serif; font-size: clamp(14px, 4vw, 18px); font-weight: 600; letter-spacing: 3px; color: var(--text-white); text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-bottom: 40px; }
 
         /* ====== TIPOGRAFÍA Y ESTILOS GLOBALES ====== */
-        .gold-text { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7)); }
+        .gold-text { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
         .band-beige .gold-text { background: none; -webkit-text-fill-color: initial; color: var(--text-red); filter: none; text-shadow: 0 1px 2px rgba(0,0,0,0.1); } 
 
         .section-heading { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(36px, 9vw, 44px); font-weight: 600; letter-spacing: 1px; margin-bottom: 25px; line-height: 1.2; }
@@ -168,7 +165,7 @@
         #lightbox img { max-width: 90%; max-height: 85vh; border: 12px solid #fff; border-bottom: 60px solid #fff; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,1); }
         #lightbox-close { position: absolute; top: 25px; right: 25px; color: #fff; font-size: 40px; cursor: pointer; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
 
-        /* ====== ITINERARIO AJUSTADO ====== */
+        /* ====== ITINERARIO ====== */
         .timeline-container { position: relative; margin: 40px auto 10px auto; padding-left: 65px; text-align: left; max-width: 95%; }
         .timeline-container::before { content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px; background: rgba(122,27,27,0.4); }
         .timeline-item { position: relative; margin-bottom: 55px; }
@@ -234,7 +231,7 @@
         .band-beige .btn-secondary { background: #fff; border: 1px solid var(--text-red); color: var(--text-red); }
         .band-beige .btn-secondary svg { fill: var(--text-red); }
 
-        /* ====== DRESS CODE CON BOTAS Y EJEMPLOS ====== */
+        /* ====== DRESS CODE CON BOTAS INVERTIDAS ====== */
         .dress-code-alert {
             background: rgba(0,0,0,0.4); padding: 40px 20px; border-radius: 12px; border: 1px dashed rgba(220,191,162,0.4); margin: 35px auto 0 auto; max-width: 90%; transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
@@ -242,7 +239,8 @@
         .dress-code-alert p { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: var(--text-gold); margin: 0; display: flex; align-items: center; justify-content: center; gap: 15px; flex-direction: column; }
         .dress-code-desc { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--text-white); font-style: italic; margin-top: 15px; font-weight: 500; line-height: 1.5; }
         
-        .icono-botas { width: 75px; height: auto; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.6)); transition: transform 0.4s ease; }
+        /* Botas invertidas a blanco */
+        .icono-botas { width: 75px; height: auto; object-fit: contain; margin-bottom: 10px; filter: brightness(0) invert(1) drop-shadow(0 4px 6px rgba(0,0,0,0.6)); transition: transform 0.4s ease; }
         .dress-code-alert:hover .icono-botas { transform: scale(1.1) rotate(-5deg); }
 
         .outfit-gallery { display: flex; justify-content: center; gap: 15px; margin-top: 25px; width: 100%; }
@@ -274,7 +272,7 @@
         /* ====== UTILIDADES ====== */
         #music-control-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; border-radius: 50%; background: var(--bg-oscuro); border: 2px solid var(--text-gold); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; box-shadow: 0 10px 25px rgba(0,0,0,0.8); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
         #music-control-btn.visible { opacity: 1; visibility: visible; }
-        #music-control-btn:hover { transform: scale(1.15) rotate(10deg); background: var(--bg-brown); }
+        #music-control-btn:hover { transform: scale(1.15) rotate(10deg); background: #4a2c1a; }
         #music-control-btn svg { width: 24px; height: 24px; fill: var(--text-gold); transition: fill 0.3s; }
         
         #ambient-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0; transition: opacity 2s; }
@@ -363,7 +361,7 @@
                 <div class="env-name-label">Mia</div>
                 <div class="env-date-label">Mis XV Años &nbsp;·&nbsp; 2026</div>
 
-                <!-- Sello Limpio con Herradura -->
+                <!-- Sello Herradura Invertido a Blanco -->
                 <div class="wax-seal">
                     <img src="assets/herradura.png" alt="Sello Herradura">
                 </div>
@@ -377,7 +375,6 @@
             
             <!-- ====== SECCIÓN 1: HERO (OSCURO) ====== -->
             <div class="section-band band-oscuro hero-band">
-                <!-- Caballo de fondo animado y con 80% de opacidad -->
                 <img src="assets/caballo.png" alt="Fondo Caballo" class="bg-horse-image">
 
                 <div class="hero-content">
@@ -404,7 +401,6 @@
                     <!-- FOTO 2: SWAPPED PRINCIPAL -->
                     <div class="photo-gallery">
                         <div class="polaroid p-left reveal-up delay-4">
-                            <!-- Cambio de foto1 por foto2 -->
                             <img src="assets/foto2.jpg" alt="Mia XV Años">
                         </div>
                     </div>
@@ -507,7 +503,6 @@
 
                 <!-- FOTOS 1, 3, 4: POLAROIDS APILADAS -->
                 <div class="photo-gallery" style="margin-top: 60px;">
-                    <!-- Cambio de foto2 por foto1 -->
                     <div class="polaroid p-right reveal-right delay-1"><img src="assets/foto1.jpg" alt="Galeria"></div>
                     <div class="polaroid p-left reveal-left delay-2"><img src="assets/foto3.jpg" alt="Galeria"></div>
                     <div class="polaroid p-right reveal-right delay-3"><img src="assets/foto4.jpg" alt="Galeria"></div>
@@ -626,14 +621,14 @@
                 
                 <div class="dress-code-alert reveal-bounce delay-1">
                     <p>
-                        <!-- Integración de Botas.png -->
+                        <!-- Botas.png invertidas a blanco puro -->
                         <img src="assets/botas.png" alt="Botas Vaqueras" class="icono-botas">
                         Sugerencia de Outfit
                     </p>
                     <div class="dress-code-desc">Vestimenta formal con un toque vaquero. ¡Saca a relucir tus mejores botas y sombrero!</div>
                 </div>
 
-                <!-- Ejemplos de Outfits Horizontales -->
+                <!-- Ejemplos de Outfits -->
                 <div class="outfit-gallery">
                     <img src="assets/outfit1.jpg" alt="Idea de Outfit 1" onclick="openLightbox(this.src)" class="reveal-up delay-2">
                     <img src="assets/outfit2.jpg" alt="Idea de Outfit 2" onclick="openLightbox(this.src)" class="reveal-up delay-3">
@@ -647,7 +642,6 @@
                 <p class="rsvp-intro reveal-left delay-1">Tu presencia es nuestro mayor regalo y lo más importante para mí, pero si deseas tener un detalle, cualquier obsequio será bien recibido.</p>
                 
                 <div class="reveal-up delay-2" style="margin-bottom:40px;">
-                    <!-- Ícono Lluvia de Sobres -->
                     <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--text-gold); margin-bottom: 15px;">
                         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                     </svg>
@@ -655,7 +649,6 @@
                 </div>
 
                 <div class="reveal-up delay-3">
-                    <!-- Ícono Regalo Tradicional -->
                     <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; fill: var(--text-gold); margin-bottom: 15px;">
                         <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/>
                     </svg>
@@ -709,13 +702,13 @@
                 <div class="section-heading gold-text reveal-left">Confirmación</div>
                 <p class="rsvp-intro reveal-right delay-1">Será un honor contar con tu presencia en esta noche tan especial. Por favor confirma tu asistencia.</p>
 
-                <!-- SISTEMA DE PASES DIGITALES INVYTIA (POR NÚMERO DE PERSONAS) -->
+                <!-- SISTEMA DE PASES DIGITALES -->
                 <div id="pases-digitales" class="reveal-up delay-1">
                     <svg viewBox="0 0 24 24" style="width: 35px; height: 35px; fill: var(--text-gold); margin-bottom: 10px;">
                         <path d="M22 10V6c0-1.11-.89-2-2-2H4c-1.11 0-2 .89-2 2v4c1.11 0 2 .89 2 2s-.89 2-2 2v4c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2v-4c-1.11 0-2-.89-2-2s.89-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46s-.81-2.77-2-3.46V6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/>
                     </svg>
                     <div style="font-family: 'Cinzel', serif; font-size: 14px; font-weight: 800; color: var(--text-gold); letter-spacing: 2px; text-transform: uppercase;">Pase de Acceso</div>
-                    <div style="font-family: 'Bodoni Moda', serif; font-size: 26px; font-style: italic; color: #fff; margin-top: 5px;">Válido para <span id="numero-personas" style="font-weight: 700; color: var(--text-red);"></span> personas</div>
+                    <div style="font-family: 'Bodoni Moda', serif; font-size: 26px; font-style: italic; color: var(--text-dark); margin-top: 5px;">Válido para <span id="numero-personas" style="font-weight: 700; color: var(--text-red);"></span> personas</div>
                 </div>
                 
                 <div class="rsvp-input-wrap reveal-up delay-2">
@@ -791,7 +784,7 @@
                 img.addEventListener('click', () => openLightbox(img.src));
             });
 
-            // Lógica de Sistema de Pases Invytia (?p=X)
+            // Lógica de Pases Digitales (?p=X)
             const urlParams = new URLSearchParams(window.location.search);
             const pases = urlParams.get('p');
             if(pases && !isNaN(pases) && parseInt(pases) > 0) {
